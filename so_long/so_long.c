@@ -6,24 +6,26 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:04:40 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/04 21:21:42 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/05 22:23:52 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-void coint_collect(t_data *data,int *c)
+void count_collect(t_data *data)
 {
 	int i;
 	i = 0;
 	int j;
 	j = 0;
+	data->c = 0;
 	while (data->map[i])
 	{
+		j = 0;
 		while (data->map[i][j])
 		{
 			if(data->map[i][j] == 'C')
-				(*c)++;
-			j++;
+				data->c++;
+			j++;	
 		}
 		i++;
 	}
@@ -31,100 +33,179 @@ void coint_collect(t_data *data,int *c)
 }
 void take_img(t_data *data)
 {
-	data->mlx_ptr = mlx_init();
 	data->img_p_1 = mlx_xpm_file_to_image(data->mlx_ptr, "./img/b1.xpm",&data->a,&data->b);
 	data->img_p_2 = mlx_xpm_file_to_image(data->mlx_ptr, "./img/b2.xpm", &data->a, &data->b);
-	data->img_c_d = mlx_xpm_file_to_image(data->mlx_ptr, "./img/cdoor1.xpm", &data->a, &data->b);
-	data->img_d = mlx_xpm_file_to_image(data->mlx_ptr, "./img/door.xpm", &data->a, &data->b);
+	data->img_c_d = mlx_xpm_file_to_image(data->mlx_ptr, "./img/door.xpm", &data->a, &data->b);
+	data->img_d = mlx_xpm_file_to_image(data->mlx_ptr, "./img/bab.xpm", &data->a, &data->b);
 	data->img_c = mlx_xpm_file_to_image(data->mlx_ptr, "./img/collect.xpm", &data->a, &data->b);
 	data->img_w = mlx_xpm_file_to_image(data->mlx_ptr, "./img/wall.xpm", &data->a, &data->b);
 	data->img_ground = mlx_xpm_file_to_image(data->mlx_ptr, "./img/ground.xpm", &data->a, &data->b);
-	data->mlx_win = mlx_new_window(data->mlx_ptr, 5*26, 13*26, "so_long");
+	
 }
 void draw_map(t_data *data)
 {
 	int j;
-	//void	*mlx_win;
-	data->mlx_ptr = mlx_init();
+	
 	data->i = 0;
-	// data->mlx_win = mlx_new_window(data->mlx_ptr, 5*26, 13*26, "so_long");
 	while (data->map[data->i])
 	{
 		j = 0;
 		while (data->map[data->i][j])
 		{
 			if(data->map[data->i][j] == '1')
-				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img_w, data->i*26, j*26);
+				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img_w, j*26, data->i*26);
 			if(data->map[data->i][j] == '0')
-				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img_ground, data->i*26, j*26);
+				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img_ground, j*26, data->i*26);
 			if(data->map[data->i][j] == 'C')
-				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img_c, data->i*26, j*26);
+				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img_c, j*26, data->i*26);
 			if(data->map[data->i][j] == 'E')
-				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img_d, data->i*26, j*26);
+				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img_d, j*26, data->i*26);
 			if(data->map[data->i][j] == 'P')
-				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img_p_1, data->i*26, j*26);
+				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img_p_1, j*26, data->i*26);
 			j++;
 		}
 		data->i++;	
 	}
-	// mlx_loop(data->mlx_ptr);
+	printf("%d\n",data->moves);
 }
 void get_index(t_data *map,int *x,int *y)
 {
-	//*x = 0;
-	while(map->map[*x])
+	*y = 0;
+	while(map->map[*y])
 	{
-		while (map->map[*x][*y])
+		*x = 0;
+		while (map->map[*y][*x])
 		{
-			//*y = 0;
-			if(map->map[*x][*y] == 'P')
+			if(map->map[*y][*x] == 'P')
 				return ;
-			(*y)++;
+			(*x)++;
 		}
-		(*x)++;
+		(*y)++;
 	}
 }
-int take_key(int key, t_data *m)
+
+void key_0(t_data *map ,int *c)
 {
 	int x;
 	int y;
-	x = 0;
-	y = 0;
-	int c;
-	// void *mlx_win;
-	//m->mlx_win = mlx_new_window(m->mlx_ptr, 5*26, 13*26, "so_long");
-	coint_collect(m,&c);
-	get_index(m,&x,&y);
-	if(key == 2)
+	
+	get_index(map,&x,&y);
+	char *line = map->map[y];
+	if(*c == 0)
+		map->img_d = map->img_c_d;
+	if(line[x -1] == 'C')
 	{
-		printf("d");
-		if(m->map[x][y+1] != '1')
-		{
-			if(m->map[x][y+1] == 'C')
-			{
-				m->map[x][y+1] = 'P';
-				m->map[x][y] = '0';
-				c--;
-				// mlx_destroy_window(m->mlx_ptr, m->mlx_win);
-				// draw_map(m);
-			}
-			if(m->map[x][y+1] == '0')
-			{
-				m->map[x][y+1] = 'P';
-				m->map[x][y] = '0';
-				// mlx_destroy_window(m->mlx_ptr, m->mlx_win);
-				// draw_map(m);
-			}
-			if(m->map[x][y+1] == 'E')
-			{
-				if(c == 0)
-					return 0;
-			}
-			// mlx_destroy_window(m->mlx_ptr, m->mlx_win);
-			// draw_map(m);	
-		}
+		line[x - 1] = 'P';
+		line[x] = '0';
+		(*c)--;
 	}
-	return(0);
+	if(line[x - 1] == '0')
+	{
+		line[x - 1] = 'P';
+		line[x] = '0';
+	}
+	if((line[x - 1] == 'E')&&( *c == 0))
+		exit (0);
+	
+}
+void key_2(t_data *map,int *c)
+{
+	int x;
+	int y;
+	
+	get_index(map,&x,&y);
+	char *line = map->map[y];
+	if(*c == 0)
+		map->img_d = map->img_c_d;
+	if(line[x + 1] == 'C')
+	{
+		line[x + 1] = 'P';
+		line[x] = '0';
+		(*c)--;
+	}
+	if(line[x + 1] == '0')
+	{
+		line[x + 1 ] = 'P';
+		line[x] = '0';
+	}
+	if((line[x + 1] == 'E')&&( *c == 0))
+		exit (0);
+}
+void key_13(t_data *map,int *c)
+{
+		int x;
+		int y;
+		
+		get_index(map,&x,&y);
+		char *line = map->map[y];
+		char *line2 = map->map[y - 1];
+		if(*c == 0)
+			map->img_d = map->img_c_d;
+		if(line2[x] == 'C')
+		{
+			line2[x] = 'P';
+			line[x] = '0';
+			(*c)--;
+		}
+		if(line2[x] == '0')
+		{
+			line2[x] = 'P';
+			line[x] = '0';
+		}
+		if((line2[x] == 'E')&&( *c == 0))
+			exit (0);
+}
+void key_1(t_data *map,int *c)
+{
+	int x;
+	int y;
+	
+	get_index(map,&x,&y);
+	char *line = map->map[y];
+	char *line2 = map->map[y + 1];
+	if(*c == 0)
+		map->img_d = map->img_c_d;
+	if(line2[x] == 'C')
+	{
+		line2[x] = 'P';
+		line[x] = '0';
+		(*c)--;
+	}
+	if(line2[x] == '0')
+	{
+		line2[x] = 'P';
+		line[x] = '0';
+	}
+	if((line2[x] == 'E')&&( *c == 0))
+		exit (0);		
+}
+
+int take_key(int key, t_data *m)
+{
+		m->moves++;
+		if (key == 0)
+		{
+		key_0(m,&m->c);
+		draw_map(m);
+		}
+		if (key == 1)
+		{
+		key_1(m,&m->c);
+		draw_map(m);
+		}
+		if (key == 2)
+		{
+		key_2(m,&m->c);
+		draw_map(m);
+		}
+		if (key == 13)
+		{
+		 key_13(m,&m->c);
+		draw_map(m);
+		}
+		if (key == 53)
+			exit (0);
+		return (key);
 }
 int main(int ac, char **av)
 {
@@ -152,16 +233,18 @@ int main(int ac, char **av)
 	s = malloc(1);
 	s[0] = '\0';
 	data.map = ft_read_map(s,fd);
-	i = 0;
-	while(data.map[i])
-	{
-		printf("%s\n",data.map[i++]);
-	}
-	take_img(&data);
+	// i = 0;
+	// while(data.map[i])
+	// {
+	// 	printf("%s\n",data.map[i++]);
+	// }
 	data.mlx_ptr = mlx_init();
-	// data.mlx_win = mlx_new_window(data.mlx_ptr, 5*26, 13*26, "so_long");
+	data.mlx_win = mlx_new_window(data.mlx_ptr, ft_strlen(data.map[0])*26, ft_mapelines(&data)*26, "so_long");
+	take_img(&data);
+	count_collect(&data);
 	draw_map(&data);
-	mlx_hook(data.mlx_win ,02 ,1L<<0,take_key ,&data);
-	// mlx_loop_hook(data.mlx_ptr, draw_map, &data);
-	// mlx_loop(data.mlx_ptr);
+	mlx_hook(data.mlx_win , 2, 0, &take_key, &data);
+	//mlx_key_hook(data.mlx_win, take_key, &data);
+	//mlx_loop_hook(data.mlx_ptr,take_key,&data);
+	mlx_loop(data.mlx_ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:05:02 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/04 20:41:57 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/05 22:18:32 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct t_data
     int i;
     int a;
     int b;
+    int moves;
     void *img_ground;
     void *img_c;
     void *img_d;
@@ -62,5 +63,6 @@ char    **ft_read_map(char *s, int fd);
 int     ft_check_map(char **map,char *s);
 int     ft_check_walles(char **map,int *k);
 int     ft_check_countent(char *s,t_data map);
+int	ft_mapelines(t_data *n);
 
 #endif
