@@ -6,11 +6,11 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:21:33 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/06 19:22:50 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/08 20:27:18 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void get_index(t_data *map,int *x,int *y)
 {
@@ -63,5 +63,19 @@ void count_moves(t_data *data)
 		n = x;
 		w = y;
 		printf("%d\n",data->moves);
+	}
+}
+
+void ft_game_msg(int n)
+{
+	if(n == 1)
+	{
+		write(1,"you win !\n",11);
+		exit (0);
+	}
+	if(n == 2)
+	{
+		write(1,"game over !\n",13);
+		exit (0);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 23:14:52 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/04 22:35:18 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/08 17:35:32 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,15 @@ int	ft_strcmp(char *s, char *p)
 	return (s[i] - p[i]);
 }
 
-void ft_error(void)
+void ft_error(int n)
 {
-		write(1, "Error\n", 6);
-		exit(1);
+	if(n == 1)
+		write(2, "Error in fd\n", 13);
+	if(n == 2)
+		write(2, "Error in map\n", 13);
+	if(n == 3)
+		write(2,"Error in path\n",15);
+	if(n == 4)
+		write(1, "Error\n", 7);
+	exit(1);
 }

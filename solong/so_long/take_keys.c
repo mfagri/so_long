@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:14:04 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/06 19:27:33 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/08 17:24:20 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void key_0(t_data *map ,int *c)
 		count_moves(map);
 	}
 	if((line[x - 1] == 'E')&&( *c == 0))
-		exit (0);
+		ft_game_msg(1);
 }
 
 void key_1(t_data *map,int *c)
@@ -62,7 +62,7 @@ void key_1(t_data *map,int *c)
 		count_moves(map);
 	}
 	if((line2[x] == 'E')&&( *c == 0))
-		exit (0);		
+		ft_game_msg(1);		
 }
 
 void key_2(t_data *map,int *c)
@@ -88,7 +88,7 @@ void key_2(t_data *map,int *c)
 		count_moves(map);
 	}
 	if((line[x + 1] == 'E')&&( *c == 0))
-		exit (0);
+		ft_game_msg(1);
 }
 
 void key_13(t_data *map,int *c)
@@ -115,10 +115,10 @@ void key_13(t_data *map,int *c)
 		count_moves(map);
     }
 	if((line2[x] == 'E')&&( *c == 0))
-		exit (0);
+		ft_game_msg(1);
 }
 
-int take_key(int key, t_data *m)
+int	take_key(int key, t_data *m)
 {
 	if (key == 0)
 		key_0(m,&m->c);

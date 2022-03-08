@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:05:02 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/06 19:52:52 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/08 20:26:03 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#ifndef SO_LONG_H
-#define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+#define SO_LONG_BONUS_H
 
 #include <unistd.h>
 #include <stdlib.h>
@@ -55,10 +55,12 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const	char *s);
 char	*ft_strchr(char *s, int c);
+char	*ft_strrchr(const char *s, int c);
 void	ft_putstr(char *s);
 int     ft_count_line(char *s);
 int     ft_strcmp(char *s, char *p);
-void    ft_error(void);
+void    ft_error(int n);
+void	ft_game_msg(int n);
 char    **ft_read_map(char *s, int fd);
 int     ft_check_map(char **map,char *s);
 int     ft_check_walles(char **map,int *k);
@@ -67,7 +69,7 @@ int		ft_mapelines(t_data *n);
 void	get_index(t_data *map,int *x,int *y);
 void	take_img(t_data *data);
 int		draw_map(t_data *data);
-void draw_map_2(t_data *data,int j);
+void	draw_map_2(t_data *data,int j);
 void	mouve_player_2(t_data *m);
 int		take_key(int key, t_data *m);
 void	get_index(t_data *map,int *x,int *y);

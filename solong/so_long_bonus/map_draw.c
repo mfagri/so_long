@@ -6,11 +6,11 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:08:01 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/06 20:39:34 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/08 20:27:59 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void take_img(t_data *data)
 {

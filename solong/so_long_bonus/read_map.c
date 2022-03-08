@@ -6,11 +6,11 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 23:10:54 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/01 23:28:35 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/08 20:27:49 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int ft_check_countent(char *s, t_data map)
 {
@@ -107,6 +107,7 @@ char    **ft_read_map(char *s, int fd)
 	free(buf);
 	m.map = ft_split(s,'\n');
 	if(ft_check_map(m.map,s))
-		ft_error();
+		ft_error(2);
+	free(s);
 	return (m.map);
 }
