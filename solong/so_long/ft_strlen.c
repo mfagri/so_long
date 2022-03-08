@@ -6,11 +6,16 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 16:27:04 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/08 17:57:36 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/08 23:01:42 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
 
 void	ft_putstr(char *s)
 {

@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:05:02 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/08 17:59:43 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/08 23:01:56 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct t_keys
 }t_keys;
 
 char	*get_next_line(int fd);
-int		ft_atoi(const char *str);
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -57,6 +56,8 @@ size_t	ft_strlen(const	char *s);
 char	*ft_strchr(char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 void	ft_putstr(char *s);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putnbr_fd(int n, int fd);
 int     ft_count_line(char *s);
 int     ft_strcmp(char *s, char *p);
 void    ft_error(int n);

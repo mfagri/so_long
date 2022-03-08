@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:21:33 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/08 17:22:55 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/08 23:03:21 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void count_moves(t_data *data)
 		data->moves++;
 		n = x;
 		w = y;
-		printf("%d\n",data->moves);
+		ft_putnbr_fd(data->moves,1);
+		write(1,"\n",1);
 	}
 }
 

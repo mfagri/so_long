@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:05:02 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/08 20:26:03 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/08 21:43:53 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct t_keys
 }t_keys;
 
 char	*get_next_line(int fd);
-int		ft_atoi(const char *str);
+char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -79,4 +79,5 @@ void	key_0(t_data *map, int *c);
 void	key_1(t_data *map, int *c);
 void	key_2(t_data *map, int *c);
 void	key_13(t_data *map,int *c);
+char	*mouves_in_win(t_data *data);
 #endif
