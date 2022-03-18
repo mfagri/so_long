@@ -6,26 +6,36 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:40:48 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/01 15:30:20 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/18 18:57:58 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*a;
-	int		b;
-	int		c;
+	char	*str;
+	size_t	len;
+	size_t	j;
 
-	if (!s1 || !s2)
+	if (s1 == NULL)
+	{
+		s1 = (char *)malloc(1 * sizeof(char));
+		s1[0] = '\0';
+	}
+	len = ft_strlen(s1)+ ft_strlen(s2);
+	str = (char *)malloc(len + 1 * sizeof(char));
+	if (str == NULL)
 		return (NULL);
-	b = ft_strlen(s1);
-	c = ft_strlen(s2);
-	a = (char *)malloc((b + c + 1) * sizeof(char));
-	if (!a)
-		return (NULL);
-	ft_strlcpy(a, s1, b + 1);
-	ft_strlcat(&a[ft_strlen(a)], s2, c + 1);
-	return (a);
+	len = -1;
+	while (s1[++len])
+		str[len] = s1[len];
+	j = 0;
+	while (s2[j])
+	{
+		str[len++] = s2[j++];
+	}
+	str[len] = '\0';
+	free(s1);
+	return (str);
 }

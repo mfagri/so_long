@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:14:04 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/08 21:43:23 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/18 16:34:50 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void key_0(t_data *map ,int *c)
 	}
 	if((line[x - 1] == 'E')&&( *c == 0))
 		ft_game_msg(1);
+	if(line[x - 1] == 'F')
+		ft_game_msg(2);
 }
 
 void key_1(t_data *map,int *c)
@@ -62,7 +64,9 @@ void key_1(t_data *map,int *c)
 		count_moves(map);
 	}
 	if((line2[x] == 'E')&&( *c == 0))
-		ft_game_msg(1);		
+		ft_game_msg(1);
+	if(line2[x] == 'F')
+		ft_game_msg(2);	
 }
 
 void key_2(t_data *map,int *c)
@@ -89,6 +93,8 @@ void key_2(t_data *map,int *c)
 	}
 	if((line[x + 1] == 'E')&&( *c == 0))
 		ft_game_msg(1);
+	if(line[x + 1] == 'F')
+		ft_game_msg(2);
 }
 
 void key_13(t_data *map,int *c)
@@ -116,6 +122,8 @@ void key_13(t_data *map,int *c)
     }
 	if((line2[x] == 'E')&&( *c == 0))
 		ft_game_msg(1);
+	if(line2[x] == 'F')
+		ft_game_msg(2);
 }
 
 int	take_key(int key, t_data *m)

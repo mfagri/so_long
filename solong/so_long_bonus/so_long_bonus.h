@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:05:02 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/08 21:43:53 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/18 18:43:12 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <mlx.h>
 #include <fcntl.h>
+#include <math.h>
 
 typedef struct t_data
 {
@@ -50,7 +51,7 @@ typedef struct t_keys
 char	*get_next_line(int fd);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const	char *s);
@@ -61,10 +62,10 @@ int     ft_count_line(char *s);
 int     ft_strcmp(char *s, char *p);
 void    ft_error(int n);
 void	ft_game_msg(int n);
-char    **ft_read_map(char *s, int fd);
+char    **ft_read_map(int fd);
 int     ft_check_map(char **map,char *s);
 int     ft_check_walles(char **map,int *k);
-int     ft_check_countent(char *s,t_data map);
+int     ft_check_countent(char *s,t_data *map);
 int		ft_mapelines(t_data *n);
 void	get_index(t_data *map,int *x,int *y);
 void	take_img(t_data *data);
@@ -79,5 +80,7 @@ void	key_0(t_data *map, int *c);
 void	key_1(t_data *map, int *c);
 void	key_2(t_data *map, int *c);
 void	key_13(t_data *map,int *c);
-char	*mouves_in_win(t_data *data);
+void	mouves_in_win(t_data *data);
+void	get_index_enemy(t_data *map,int *x,int *y);
+void	ft_enemy_mouve(t_data *data);
 #endif

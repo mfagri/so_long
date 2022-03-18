@@ -6,11 +6,27 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:21:33 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/08 21:44:51 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/16 18:53:49 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+void get_index_enemy(t_data *map,int *x,int *y)
+{
+	*y = 0;
+	while(map->map[*y])
+	{
+		*x = 0;
+		while (map->map[*y][*x])
+		{
+			if(map->map[*y][*x] == 'F')
+				return ;
+			(*x)++;
+		}
+		(*y)++;
+	}
+}
 
 void get_index(t_data *map,int *x,int *y)
 {

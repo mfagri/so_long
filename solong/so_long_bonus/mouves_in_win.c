@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 21:08:09 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/08 22:57:29 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/18 18:32:14 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,12 @@ char	*ft_itoa(int n)
 	return (b);
 }
 
-char *mouves_in_win(t_data *data)
+void	mouves_in_win(t_data *data)
 {
-    char *s;
-    char *nb;
-    char *movement;
-    
-    s = "movement : ";
-    nb = ft_itoa(data->moves);
-    movement = ft_strjoin(s,nb);
-    return (movement);
+	char *s;
+	
+	s = ft_itoa(data->moves);
+    mlx_string_put(data->mlx_ptr,data->mlx_win,0 ,0 ,0x00FFFFFF,"mouves :");
+	mlx_string_put(data->mlx_ptr,data->mlx_win,80 ,0 ,0x00FFFFFF,s);
+	free(s);
 }

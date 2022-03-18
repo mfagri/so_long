@@ -6,35 +6,43 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 23:10:54 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/08 20:27:49 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/18 18:52:59 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
-int ft_check_countent(char *s, t_data map)
+int ft_enemy(char *s,t_data **map)
 {
-    map.c = 0;
-    map.p = 0;
-    map.e = 0;
-    map.i = 0;
-    map.z = 0;
-    while (s[map.i])
+	static int f;
+	
+	if(s[(*map)->i] == 'F')
+		f++;
+	return (f);
+}
+int ft_check_countent(char *s, t_data *map)
+{
+    map->c = 0;
+    map->p = 0;
+    map->e = 0;
+    map->i = 0;
+    map->z = 0;
+    while (s[map->i])
     {
-        if (s[map.i] != 'P' && s[map.i] != 'C' && s[map.i] != 'E'
-            && s[map.i] != '1' && s[map.i] != '0' && s[map.i] != '\n')
+        if (s[map->i] != 'P' && s[map->i] != 'C' && s[map->i] != 'E'
+            && s[map->i] != '1' && s[map->i] != '0' && s[map->i] != '\n' && s[map->i] != 'F')
             return (1);
-        if (s[map.i] == 'P')
-            map.p++;
-		if (s[map.i] == 'C')
-			map.c++;
-		if (s[map.i] == '0')
-			map.z++;
-		if (s[map.i] == 'E')
-			map.e++;
-		map.i++;
+        if (s[map->i] == 'P')
+            map->p++;
+		if (s[map->i] == 'C')
+			map->c++;
+		if (s[map->i] == '0')
+			map->z++;
+		if (s[map->i] == 'E')
+			map->e++;
+		ft_enemy(s,&map);
+		map->i++;
 	}
-	if (map.p != 1 || map.e == 0 || map.c == 0 || map.z == 0)
+	if (map->p != 1 || map->e == 0 || map->c == 0 || map->z == 0 || ft_enemy(s,&map) == 0)
 		return (1);
 	return (0);
 }
@@ -79,23 +87,25 @@ int ft_check_map(char **map,char *s)
 		return(1);
 	if (ft_check_walles(map,&c))
 		return(1);
-	if (ft_check_countent(s,m))
+	if (ft_check_countent(s,&m))
 		return(1);
 	return (0);
 }
 
-char    **ft_read_map(char *s, int fd)
+char    **ft_read_map(int fd)
 {
     t_data  m;
 	char    *buf;
 	int     n;
-
+	static char *s;
+	
 	buf = (char *)malloc(sizeof(char) * (2));
 	if (!buf)
 		return (NULL);
-	while ((n = read(fd, buf, 1)))
+	n = 1;
+	while (n)
 	{
-		
+		n = read(fd, buf, 1);
 		if (n == -1)
 		{
 			free(buf);
