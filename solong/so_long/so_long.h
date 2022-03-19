@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:05:02 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/19 13:17:49 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/19 17:25:28 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ void	ft_putnbr_fd(int n, int fd);
 int		ft_count_line(char *s);
 int		ft_strcmp(char *s, char *p);
 void	ft_error(int n);
-void	ft_game_msg(int n);
+int		ft_exit(t_data *data);
+void	ft_free_map(t_data *data);
+void	ft_game_msg(int n, t_data *data);
 char	**ft_read_map(int fd);
 int		ft_check_map(char **map, char *s);
 int		ft_check_walles(char **map, int *k);

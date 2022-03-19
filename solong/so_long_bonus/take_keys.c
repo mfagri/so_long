@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:14:04 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/19 13:38:50 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/19 19:29:03 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	key_0(t_data *map, int *c)
 		count_moves(map);
 	}
 	if (map->map[y][x - 1] == 'E' && *c == 0)
-		ft_game_msg(1);
+		ft_game_msg(1, map);
 	if (map->map[y][x - 1] == 'F')
-		ft_game_msg(2);
+		ft_game_msg(2, map);
 }
 
 void	key_1(t_data *map, int *c)
@@ -61,9 +61,9 @@ void	key_1(t_data *map, int *c)
 		count_moves(map);
 	}
 	if (map->map[y + 1][x] == 'E' && *c == 0)
-		ft_game_msg(1);
+		ft_game_msg(1, map);
 	if (map->map[y + 1][x] == 'F')
-		ft_game_msg(2);
+		ft_game_msg(2, map);
 }
 
 void	key_2(t_data *map, int *c)
@@ -88,9 +88,9 @@ void	key_2(t_data *map, int *c)
 		count_moves(map);
 	}
 	if (map->map[y][x + 1] == 'E' && *c == 0)
-		ft_game_msg(1);
+		ft_game_msg(1, map);
 	if (map->map[y][x + 1] == 'F')
-		ft_game_msg(2);
+		ft_game_msg(2, map);
 }
 
 void	key_13(t_data *map, int *c)
@@ -115,9 +115,9 @@ void	key_13(t_data *map, int *c)
 		count_moves(map);
 	}
 	if (map->map[y - 1][x] == 'E' && *c == 0)
-		ft_game_msg(1);
+		ft_game_msg(1, map);
 	if (map->map[y - 1][x] == 'F')
-		ft_game_msg(2);
+		ft_game_msg(2, map);
 }
 
 int	take_key(int key, t_data *m)
@@ -131,6 +131,6 @@ int	take_key(int key, t_data *m)
 	if (key == 13)
 		key_13(m, &m->c);
 	if (key == 53)
-		exit (0);
+		ft_exit(m);
 	return (key);
 }

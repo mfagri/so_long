@@ -6,11 +6,30 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:04:40 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/19 13:18:20 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/19 17:45:32 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	ft_free_map(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	mlx_destroy_window(data->mlx_ptr, data->mlx_win);
+	while (data->map[i])
+		free(data->map[i++]);
+	free(data->map);
+}
+
+int	ft_exit(t_data *data)
+{
+	write(1, "You Quit !\n", 12);
+	ft_free_map(data);
+	exit (0);
+	return (0);
+}
 
 void	ft_check(int ac, char **av)
 {
@@ -26,12 +45,6 @@ void	ft_check(int ac, char **av)
 	s = ft_strrchr(av[1], '.');
 	if (ft_strcmp(s, ".ber") != 0)
 		ft_error(3);
-}
-
-int	ft_exit(void)
-{
-	exit (0);
-	return (0);
 }
 
 int	main(int ac, char **av)

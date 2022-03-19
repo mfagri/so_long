@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 16:05:06 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/19 16:43:41 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/19 19:36:51 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ void	mouve_right(t_data *data)
 			data->map[y][x + 1] = 'F';
 			data->map[y][x] = '0';
 		}
-		x++;
 		if (data->map[y][x + 1] == 'P')
-			ft_game_msg(2);
+			ft_game_msg(2, data);
 		if (data->map[y][x + 1] == 'C' || data->map[y][x + 1] == 'E')
 			return ;
 	}
@@ -46,9 +45,8 @@ void	mouve_left(t_data *data)
 			data->map[y][x - 1] = 'F';
 			data->map[y][x] = '0';
 		}
-		x--;
 		if (data->map[y][x - 1] == 'P')
-			ft_game_msg(2);
+			ft_game_msg(2, data);
 		if (data->map[y][x - 1] == 'C' || data->map[y][x - 1] == 'E')
 			return ;
 	}

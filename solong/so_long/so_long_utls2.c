@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:21:33 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/19 12:16:06 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/19 17:44:04 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,12 @@ void	count_moves(t_data *data)
 	}
 }
 
-void	ft_game_msg(int n)
+void	ft_game_msg(int n, t_data *data)
 {
 	if (n == 1)
 	{
 		write(1, "you win !\n", 11);
+		ft_free_map(data);
 		exit (0);
 	}
 }

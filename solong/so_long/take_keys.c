@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:14:04 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/19 12:09:43 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/19 17:32:44 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,112 +16,100 @@ void	key_0(t_data *map, int *c)
 {
 	int		x;
 	int		y;
-	char	*line;
 
 	get_index(map, &x, &y);
-	line = map->map[y];
 	if (*c == 0)
 		map->img_d = map->img_c_d;
-	if (line[x -1] == 'C')
+	if (map->map[y][x - 1] == 'C')
 	{
-		line[x - 1] = 'P';
-		line[x] = '0';
+		map->map[y][x - 1] = 'P';
+		map->map[y][x] = '0';
 		count_moves(map);
 		(*c)--;
 	}
-	if (line[x - 1] == '0')
+	if (map->map[y][x - 1] == '0')
 	{
-		line[x - 1] = 'P';
-		line[x] = '0';
+		map->map[y][x - 1] = 'P';
+		map->map[y][x] = '0';
 		count_moves(map);
 	}
-	if (line[x - 1] == 'E' && *c == 0)
-		ft_game_msg(1);
+	if (map->map[y][x - 1] == 'E' && *c == 0)
+		ft_game_msg(1, map);
 }
 
 void	key_1(t_data *map, int *c)
 {
-	char	*line2;
-	char	*line;
 	int		x;
 	int		y;
 
 	get_index(map, &x, &y);
-	line = map->map[y];
-	line2 = map->map[y + 1];
 	if (*c == 0)
 		map->img_d = map->img_c_d;
-	if (line2[x] == 'C')
+	if (map->map[y + 1][x] == 'C')
 	{
-		line2[x] = 'P';
-		line[x] = '0';
+		map->map[y + 1][x] = 'P';
+		map->map[y][x] = '0';
 		count_moves(map);
 		(*c)--;
 	}
-	if (line2[x] == '0')
+	if (map->map[y + 1][x] == '0')
 	{
-		line2[x] = 'P';
-		line[x] = '0';
+		map->map[y + 1][x] = 'P';
+		map->map[y][x] = '0';
 		count_moves(map);
 	}
-	if (line2[x] == 'E' && *c == 0)
-		ft_game_msg(1);
+	if (map->map[y + 1][x] == 'E' && *c == 0)
+		ft_game_msg(1, map);
 }
 
 void	key_2(t_data *map, int *c)
 {
-	char	*line;
 	int		x;
 	int		y;
 
 	get_index(map, &x, &y);
-	line = map->map[y];
 	if (*c == 0)
 		map->img_d = map->img_c_d;
-	if (line[x + 1] == 'C')
+	if (map->map[y][x + 1] == 'C')
 	{
-		line[x + 1] = 'P';
-		line[x] = '0';
+		map->map[y][x + 1] = 'P';
+		map->map[y][x] = '0';
 		count_moves(map);
 		(*c)--;
 	}
-	if (line[x + 1] == '0')
+	if (map->map[y][x + 1] == '0')
 	{
-		line[x + 1] = 'P';
-		line[x] = '0';
+		map->map[y][x + 1] = 'P';
+		map->map[y][x] = '0';
 		count_moves(map);
 	}
-	if (line[x + 1] == 'E' && *c == 0)
-		ft_game_msg(1);
+	if (map->map[y][x + 1] == 'E' && *c == 0)
+		ft_game_msg(1, map);
 }
 
 void	key_13(t_data *map, int *c)
 {
-	char	*line;
-	char	*line2;
 	int		x;
 	int		y;
 
 	get_index(map, &x, &y);
-	line = map->map[y];
-	line2 = map->map[y - 1];
 	if (*c == 0)
 		map->img_d = map->img_c_d;
-	if (line2[x] == 'C')
+	if (map->map[y - 1][x] == 'C')
 	{
-		line2[x] = 'P';
-		line[x] = '0';
+		map->map[y - 1][x] = 'P';
+		map->map[y][x] = '0';
 		count_moves(map);
 		(*c)--;
 	}
-	if (line2[x] == '0')
+	if (map->map[y - 1][x] == '0')
 	{
-		line2[x] = 'P';
-		line[x] = '0';
+		map->map[y - 1][x] = 'P';
+		map->map[y][x] = '0';
 		count_moves(map);
 	}
-	if (line2[x] == 'E' && *c == 0)
-		ft_game_msg(1);
+	if (map->map[y - 1][x] == 'E' && *c == 0)
+		ft_game_msg(1, map);
 }
 
 int	take_key(int key, t_data *m)
@@ -135,6 +123,6 @@ int	take_key(int key, t_data *m)
 	if (key == 13)
 		key_13(m, &m->c);
 	if (key == 53)
-		exit (0);
+		ft_exit(m);
 	return (key);
 }
