@@ -6,25 +6,34 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 23:14:52 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/18 16:38:46 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/19 14:52:23 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-int ft_count_line(char *s)
+int	check_all(char *s, t_data *map)
 {
-	int i;
-	int c;
+	if (s[map->i] != 'P' && s[map->i] != 'C' && s[map->i] != 'E' && s[map->i] \
+	!= '1' && s[map->i] != '0' && s[map->i] != '\n' && s[map->i] != 'F')
+		return (1);
+	return (0);
+}
+
+int	ft_count_line(char *s)
+{
+	int	i;
+	int	c;
+
 	i = 0;
 	c = 0;
-	while(s[i])
+	while (s[i])
 	{
-		if(s[i] == '\n')
+		if (s[i] == '\n')
 			c++;
 		i++;
 	}
-	return(c);
+	return (c);
 }
 
 int	ft_mapelines(t_data *n)
@@ -49,15 +58,15 @@ int	ft_strcmp(char *s, char *p)
 	return (s[i] - p[i]);
 }
 
-void ft_error(int n)
+void	ft_error(int n)
 {
-	if(n == 1)
+	if (n == 1)
 		write(2, "Error in fd\n", 13);
-	if(n == 2)
+	if (n == 2)
 		write(2, "Error in map\n", 13);
-	if(n == 3)
-		write(2,"Error in path\n",15);
-	if(n == 4)
+	if (n == 3)
+		write(2, "Error in path\n", 15);
+	if (n == 4)
 		write(1, "Error\n", 7);
 	exit(1);
 }

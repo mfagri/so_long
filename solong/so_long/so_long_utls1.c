@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 23:14:52 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/08 23:02:21 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/19 12:01:15 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,20 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putchar_fd(n + 48, fd);
 }
 
-int ft_count_line(char *s)
+int	ft_count_line(char *s)
 {
-	int i;
-	int c;
+	int	i;
+	int	c;
+
 	i = 0;
 	c = 0;
-	while(s[i])
+	while (s[i])
 	{
-		if(s[i] == '\n')
+		if (s[i] == '\n')
 			c++;
 		i++;
 	}
-	return(c);
+	return (c);
 }
 
 int	ft_mapelines(t_data *n)
@@ -70,15 +71,15 @@ int	ft_strcmp(char *s, char *p)
 	return (s[i] - p[i]);
 }
 
-void ft_error(int n)
+void	ft_error(int n)
 {
-	if(n == 1)
+	if (n == 1)
 		write(2, "Error in fd\n", 13);
-	if(n == 2)
+	if (n == 2)
 		write(2, "Error in map\n", 13);
-	if(n == 3)
-		write(2,"Error in path\n",15);
-	if(n == 4)
+	if (n == 3)
+		write(2, "Error in path\n", 15);
+	if (n == 4)
 		write(1, "Error\n", 7);
 	exit(1);
 }
