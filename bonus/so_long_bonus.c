@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:04:40 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/19 17:45:32 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/19 20:49:38 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	ft_free_map(t_data *data)
 {
@@ -21,14 +21,6 @@ void	ft_free_map(t_data *data)
 	while (data->map[i])
 		free(data->map[i++]);
 	free(data->map);
-}
-
-int	ft_exit(t_data *data)
-{
-	write(1, "You Quit !\n", 12);
-	ft_free_map(data);
-	exit (0);
-	return (0);
 }
 
 void	ft_check(int ac, char **av)
@@ -47,6 +39,14 @@ void	ft_check(int ac, char **av)
 		ft_error(3);
 }
 
+int	ft_exit(t_data *data)
+{
+	write(1, "You Quit !\n", 12);
+	ft_free_map(data);
+	exit (0);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_data	data;
@@ -58,8 +58,8 @@ int	main(int ac, char **av)
 		ft_error(1);
 	data.map = ft_read_map(fd);
 	data.mlx_ptr = mlx_init();
-	data.mlx_win = mlx_new_window(data.mlx_ptr, ft_strlen(data.map[0]) * 32,
-			ft_mapelines(&data) * 32, "so_long");
+	data.mlx_win = mlx_new_window(data.mlx_ptr, ft_strlen(data.map[0]) * 32, \
+	ft_mapelines(&data) * 32, "so_long_bonus");
 	take_img(&data);
 	count_collect(&data);
 	draw_map(&data);

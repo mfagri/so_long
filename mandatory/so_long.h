@@ -6,7 +6,7 @@
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:05:02 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/19 17:25:28 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/21 18:12:28 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct t_data
 char	*get_next_line(int fd);
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char *s1, char *s2);
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const	char *s);
 char	*ft_strchr(char *s, int c);

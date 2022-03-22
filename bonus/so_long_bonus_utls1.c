@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utls1.c                                    :+:      :+:    :+:   */
+/*   so_long_bonus_utls1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfagri <mfagri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 23:14:52 by mfagri            #+#    #+#             */
-/*   Updated: 2022/03/19 12:01:15 by mfagri           ###   ########.fr       */
+/*   Updated: 2022/03/21 18:11:36 by mfagri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int	check_all(char *s, t_data *map)
 {
-	if (n == -2147483648)
-	{
-		ft_putstr("-214748364");
-		n = 8;
-	}
-	if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		n = -n;
-	}
-	if (n > 9)
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
-	}
-	else
-		ft_putchar_fd(n + 48, fd);
+	if (s[map->i] != 'P' && s[map->i] != 'C' && s[map->i] != 'E' && s[map->i] \
+	!= '1' && s[map->i] != '0' && s[map->i] != '\n' && s[map->i] != 'F')
+		return (1);
+	return (0);
 }
 
 int	ft_count_line(char *s)
@@ -79,7 +66,5 @@ void	ft_error(int n)
 		write(2, "Error in map\n", 13);
 	if (n == 3)
 		write(2, "Error in path\n", 15);
-	if (n == 4)
-		write(1, "Error\n", 7);
 	exit(1);
 }
